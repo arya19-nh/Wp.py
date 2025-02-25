@@ -7,8 +7,9 @@ app = FastAPI()
 
 
 class Message(BaseModel):
+    id: int
     text: str
-    user: str
+    user: str  # Added user field
 
 messages = []
 
