@@ -1,7 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
-
+    
 app = FastAPI()
 
 
@@ -16,8 +16,8 @@ messages = []
 @app.post("/send_message/")
 async def send_message(msg: Message):
     messages.append(msg.dict())  # Store message
-    return {"status": "Message received", "message": msg}
-messages = [{"id": 1, "text": "Hello"}, {"id": 2, "text": "Hi there"}]
+    return {"status": "Message received", "data": msg}
+messages = [{"id": 1, "text": "Hello","user": "arya"}, {"id": 2, "text": "Hi there","user": "abc"}]
 
 @app.get("/get_messages/")
 async def get_messages():
